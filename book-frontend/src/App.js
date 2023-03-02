@@ -17,6 +17,7 @@ function App() {
       <Container>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/page/:page" element={<Home />} />
           <Route path="/saveForm" element={<SaveForm />} />
           <Route path="/book/:id" element={<Detail />} />
           <Route path="/loginForm" element={<LoginForm />} />

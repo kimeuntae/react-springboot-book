@@ -1,5 +1,3 @@
-
-
 server:
   servlet:
     encoding:
@@ -8,14 +6,23 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:cosdb
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
+    username: cos
+    password: cos1234
+  #datasource:
+    #url: jdbc:h2:mem:cosdb
+    #driver-class-name: org.h2.Driver
     
           
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
+  
+
+  
+  
   

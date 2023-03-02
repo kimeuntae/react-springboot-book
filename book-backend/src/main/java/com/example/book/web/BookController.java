@@ -1,6 +1,10 @@
 package com.example.book.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -57,5 +61,18 @@ public class BookController {
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		return new ResponseEntity<>(bookService.delete(id),HttpStatus.OK);
 		
+	}
+	
+	/* 페이지 조회 */
+	//http://localhost:8000//book/page?page=0
+	@CrossOrigin
+	@GetMapping("/page")
+	public Page<Book> pageList(@PageableDefault(size = 10,sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
+		//Page<Book> pagingUser = userRepository.findAll(pageable);
+		Page<Book> pagingUser = bookService.pageList(pageable);
+		
+		//List<User> users = pagingUser.getContent(); 
+		//return pagingUser;
+		return pagingUser;
 	}	
 }

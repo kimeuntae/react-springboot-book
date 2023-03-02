@@ -2,14 +2,16 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
-const BookItem = ({ book }) => {
+const BookItem = ({ book, pageNum }) => {
   //const { book, key } = useParams();
   //console.log(key);
 
   return (
     <Card>
       <Card.Body>
-        <Card.Title>{book.title}</Card.Title>
+        <Card.Title>
+          {book.id} {book.title}
+        </Card.Title>
         <Link
           to={'/book/' + book.id}
           className="btn btn-primary"
