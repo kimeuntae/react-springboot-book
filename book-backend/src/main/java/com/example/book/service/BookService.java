@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.book.domain.Book;
-import com.example.book.domain.BookRepository;
+import com.example.book.reposiroy.BookRepository;
 
 import lombok.RequiredArgsConstructor;
 
