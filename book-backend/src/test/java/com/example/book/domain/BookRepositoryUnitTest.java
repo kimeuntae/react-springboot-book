@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.book.reposiroy.BookRepository;
+
 //단위테스트 (DB관련된 Bena이 IOC에 등록되면됨)
 
 @Transactional

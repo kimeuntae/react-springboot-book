@@ -2,8 +2,11 @@ package com.example.book.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.example.book.security.jwt.JwtAuthenticationFilter;
 import com.example.book.security.jwt.JwtTokenProvider;
+import com.example.book.service.CustomUserDetailsService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,8 +43,8 @@ public class SecurityConfig{
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/members/login","/members/join").permitAll()
-                .antMatchers("/members/test","/page","/book/").hasRole("USER")
+                .antMatchers("/members/login").permitAll()
+                //.antMatchers("/members/test").hasRole("USER1")
                 .antMatchers("/book/").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -49,7 +53,7 @@ public class SecurityConfig{
     }
     
  
-    /* BCrypt 암호화 */
+    /* 패스워드 인코딩 */
     @Bean
     public PasswordEncoder passwordEncoder() {
         //return PasswordEncoderFactories.createDelegatingPasswordEncoder();

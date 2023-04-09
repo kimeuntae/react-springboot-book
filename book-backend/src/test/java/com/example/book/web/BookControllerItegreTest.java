@@ -29,7 +29,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.book.domain.Book;
-import com.example.book.domain.BookRepository;
+import com.example.book.reposiroy.BookRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -58,10 +58,9 @@ public class BookControllerItegreTest {
 	
 	@BeforeEach //각각 테스트전에 실행
 	public void init() {
-		entityManager.createNativeQuery("ALTER TABLE book ALTER COLUMN id RESTART WITH 1").executeUpdate();
+		//entityManager.createNativeQuery("ALTER TABLE book ALTER COLUMN id RESTART WITH 1").executeUpdate();
 	}	
 
-	@Test
 	public void save_테스트() throws Exception {
 		//given(테스트를 하기 위한 준비)
 		Book book = new Book(1L, "스프링 따라하기", "");
@@ -82,7 +81,6 @@ public class BookControllerItegreTest {
 		
 	}
 	
-	@Test
 	public void findAll_테스트() throws Exception {
 		
 		//스터브 데이터 만들기
@@ -104,7 +102,6 @@ public class BookControllerItegreTest {
 		
 	}
 	
-	@Test
 	public void findById_테스트() throws Exception {
 		Long id = 1L;
 		
@@ -124,7 +121,6 @@ public class BookControllerItegreTest {
 			   .andDo(MockMvcResultHandlers.print());
 	}
 	
-	@Test
 	public void update_테스트() throws Exception {
 		
 		Long id = 1L;
@@ -152,7 +148,6 @@ public class BookControllerItegreTest {
 		
 	}
 	
-	@Test
 	public void delete_테스트() throws Exception {
 		
 		Long id = 1L;

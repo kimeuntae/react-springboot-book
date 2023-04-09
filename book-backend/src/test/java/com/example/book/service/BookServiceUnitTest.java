@@ -5,7 +5,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.example.book.domain.BookRepository;
+import com.example.book.reposiroy.BookRepository;
 
 
 /*

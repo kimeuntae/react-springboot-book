@@ -1,0 +1,39 @@
+server:
+  port: 8000
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+ 
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
+    username: cos
+    password: cos1234
+  #datasource:
+    #url: jdbc:h2:mem:cosdb
+    #driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+  application:
+    name: user-service
+  main:
+    allow-circular-references: true
+  
+ 
+jwt:
+  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
+    
+    
+    
+    
+
+
+  
+  
+  

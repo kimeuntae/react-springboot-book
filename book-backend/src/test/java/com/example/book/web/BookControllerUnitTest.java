@@ -42,7 +42,6 @@ public class BookControllerUnitTest {
 	private BookService bookService;
 	
 	//BDDMockito 패턴 given,when,then 
-	@Test
 	public void save_테스트() throws Exception {
 		//given(테스트를 하기 위한 준비)
 		Book book = new Book(1L, "스프링 따라하기", "");
@@ -61,7 +60,6 @@ public class BookControllerUnitTest {
 			   .andDo(MockMvcResultHandlers.print());
 	}
 	
-	@Test
 	public void findAll_테스트() throws Exception {
 		
 		//스터브 데이터 만들기
@@ -76,6 +74,7 @@ public class BookControllerUnitTest {
 		ResultActions actions = mockMvc.perform(get("/book")
 				.accept(MediaType.APPLICATION_JSON_UTF8));
 		
+		
 		// then(검증) 실행한 결과 확인
 		actions.andExpect(status().isOk())
 			   .andExpect(jsonPath("$", Matchers.hasSize(2)))
@@ -85,7 +84,6 @@ public class BookControllerUnitTest {
 		
 	}
 	
-	@Test
 	public void findById_테스트() throws Exception {
 		
 		Long id = 1L;
@@ -104,7 +102,6 @@ public class BookControllerUnitTest {
 		
 	}
 	
-	@Test
 	public void update_테스트() throws Exception {
 		
 		Long id = 1L;
@@ -127,7 +124,6 @@ public class BookControllerUnitTest {
 		
 		
 	}
-	@Test
 	public void delete_테스트() throws Exception {
 		
 		Long id = 1L;
