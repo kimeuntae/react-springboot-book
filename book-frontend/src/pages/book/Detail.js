@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate, useParams } from 'react-router-dom';
+import * as config from '../../common/config';
 
 const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  /* 상태관 리 */
+  /* 상태관리 */
   const [book, setBook] = useState({
     id: '',
     title: '',
@@ -15,7 +16,7 @@ const Detail = () => {
   });
   /* 상세조회 */
   useEffect(() => {
-    fetch('http://localhost:8080/book/' + id)
+    fetch(config.BACKEND_URL + '/book/' + id)
       .then((res) => res.json())
       .then((res) => {
         setBook(res);
@@ -24,7 +25,7 @@ const Detail = () => {
 
   /* 삭제 */
   const deleteBook = () => {
-    fetch('http://localhost:8080/book/' + id, {
+    fetch(config.BACKEND_URL + '/book/' + id, {
       method: 'DELETE',
     })
       .then((res) => res.text())

@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate, useParams } from 'react-router-dom';
+import * as config from '../../common/config';
 
 const UpdateForm = () => {
+  let user = sessionStorage.getItem('user');
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [book, setBook] = useState({
@@ -14,7 +17,7 @@ const UpdateForm = () => {
 
   /* 상세조회 */
   useEffect(() => {
-    fetch('http://localhost:8080/book/' + id)
+    fetch(config.BACKEND_URL + '/book/' + id)
       .then((res) => res.json())
       .then((res) => {
         setBook(res);
@@ -24,10 +27,11 @@ const UpdateForm = () => {
   /* 수정 */
   const submitBook = (e) => {
     e.preventDefault();
-    fetch('http://localhost:8080/book/' + id, {
+    fetch(config.BACKEND_URL + '/book/' + id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: 'Bearer ' + JSON.parse(sessionStorage.user).accessToken,
       },
       body: JSON.stringify(book),
     })
