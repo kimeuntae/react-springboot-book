@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import * as config from '../../common/config';
 
 const SaveForm = () => {
+  let user = sessionStorage.getItem('user');
+
   //초기설정
   const [book, setBook] = useState({
     title: '',
@@ -19,10 +22,11 @@ const SaveForm = () => {
 
   const submitBook = (e) => {
     e.preventDefault();
-    fetch('http://localhost:8080/book', {
+    fetch(config.BACKEND_URL + '/book', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: 'Bearer ' + JSON.parse(sessionStorage.user).accessToken,
       },
       body: JSON.stringify(book),
     })
