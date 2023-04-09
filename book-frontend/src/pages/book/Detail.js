@@ -7,7 +7,7 @@ const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  /* 상태관리 */
+  /* 상태관 리 */
   const [book, setBook] = useState({
     id: '',
     title: '',
