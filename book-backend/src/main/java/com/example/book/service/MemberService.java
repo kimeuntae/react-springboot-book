@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,7 @@ public class MemberService {
     private BCryptPasswordEncoder passwordEncoder;
  
     @Transactional
-    public TokenInfo login(String memberId, String password) {
+    public TokenInfo login(String memberId, String password) throws AuthenticationException {
         // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
         // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberId, password);
@@ -57,4 +58,12 @@ public class MemberService {
         
     	return "ok";
 	}
+    
+    @Transactional
+    public String findById(Member member) {
+    	//아이디로 검색 없으면 ok
+    	//있으면 no
+        
+    	return "ok";
+	}    
 }
